@@ -1,0 +1,62 @@
+p{
+    margin: 97px;
+}
+#carouselExample{
+    width:479px;
+    height: 50px;
+}
+#next_button{
+    
+    background-color: rgb(32, 21, 8);
+    color: black;
+  
+}
+
+#previous_button{
+  
+    background-color: rgb(32, 21, 8);
+    color: black;
+
+}
+#ai_picture{
+    padding: 2px;
+    position: relative;
+    left: 120px;
+    height: 270px;
+}
+#my_project_header{
+    display: block;
+}
+#gitHubLogo{
+    height: 50px;
+}
+#linkedin_logo{
+    height: 70px;
+
+}
+#data_header{
+    position: relative;
+    bottom: 80px;
+}
+#backend_header{
+    position: relative;
+    bottom: 10px;
+    right: 10px;
+}
+#AI_application_button{
+    position: relative;
+    bottom: 5px;
+}
+#city_application_button{
+    position: relative;
+    bottom: 10px;
+}
+#nyc_application_button{
+    position: relative;
+    bottom: 80px;
+}
+#dataStructure_table{
+    border-style:solid ;
+    width: 500px;
+    height: 1000px
+}
