@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    let's consider the following relational schema for our conversation:
+    <img src="../relationSchema.png" alt="">
+    <h4>Find the SNAMEs of suppliers who supply every red part and every green part. </h4>
+    <p>This is an interesting query to write as it could help us to understand the intuition beyond the EXISTS and NOT EXISTS functions.
+        The first obvious thing to do is to write a query that gives us PIDs of all reds and green parts. 
+        <br>
+        <br>
+        SELECT PID <br>
+        FROM PARTS <br>
+        WHERE PARTS.COLOR='red' OR PARTS.COLOR='green'
+        <br>
+        <br>
+        Now we want to look at the parts that are on the CATALOG and being supply by at least a supplier
+        <br>
+        <br>
+        SELECT C.PID <br>
+        FROM CATALOG C <br> 
+
+        <br>
+        <br>
+        Now we want to see what parts ids are not on the the CATALOG if any. Putting the previous two queries together we will get the following:
+        <br>
+        <br>
+        SELECT PID <br>
+        FROM PARTS <br>
+        WHERE PARTS.COLOR='red' OR PARTS.COLOR='green' <br>
+        EXCEPT (SELECT C.PID <br>
+        FROM CATALOG C <br> )
+        <br>
+        So far so good. Now let's get the name of suppliers that supply all reds and green parts. To do that we need to access the 
+        SUPPLIERS table. <br>
+        <br>
+        SELECT SNAMES <br>
+        FROM SUPPLIERS <br>
+        <br>
+        Next step is to make sure we are listing name of suppliers that are active and are supplying at this time. To do that we can pass
+        it to the inner query where we are accessing the CATALOG table. 
+        <br>
+        <br>
+        SELECT SNAMES <br>
+        FROM SUPPLIERS <br>
+        ...... <br>
+        SELECT PID <br>
+        FROM PARTS <br>
+        WHERE PARTS.COLOR='red' OR PARTS.COLOR='green' <br>
+        EXCEPT (SELECT C.PID <br>
+        FROM CATALOG C <br>
+        WHERE SUPPLIERS.SID = CATALOG.SID  )
+        <br>
+        <br>
+        last not least, we need to make sure that there are no parts that exist on the PARTS table which don't show up on the CATALOG.
+        To implement this intuition we can use NOT EXISTS function. 
+        <br>
+        <br>
+        SELECT SNAMES <br>
+        FROM SUPPLIERS <br>
+        WHERE NOT EXISTS( 
+        SELECT PID <br>
+        FROM PARTS <br>
+        WHERE PARTS.COLOR='red' OR PARTS.COLOR='green' <br>
+        EXCEPT (SELECT C.PID <br>
+        FROM CATALOG C <br>
+        WHERE SUPPLIERS.SID = CATALOG.SID  ))
+        <br>
+        <br>
+    </p>
+    <p>
+        <h4>Find the SNAMEs of suppliers who do not supply every red part.</h4>
+
+
+    </p>
+</body>
+</html>
