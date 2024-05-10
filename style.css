@@ -1,3 +1,26 @@
+#description{
+    display: none;
+}
+
+#imageOne{
+    height: 300px;
+}
+#imageTwo{
+    height: 300px;
+}
+
+#imageThree{
+    height: 300px;
+}
+
+#imageFour{
+    height: 300px;
+}
+
+#imageFive{
+    height: 300px;
+}
+
 p{
     margin: 97px;
 }
@@ -59,4 +82,10 @@ p{
     border-style:solid ;
     width: 500px;
     height: 1000px
+}
+body{
+    background-color: rgb(148, 134, 196);
+}
+div{
+    margin: 2px;
 }
